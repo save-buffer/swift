@@ -781,13 +781,6 @@ public:
   }
 };
 
-struct SourceFile::SourceFileSyntaxInfo {
-  const bool Enable;
-  /// The root of the syntax tree representing the source file.
-  Optional<syntax::SourceFileSyntax> SyntaxRoot;
-  SourceFileSyntaxInfo(bool Enable): Enable(Enable) {}
-};
-
 bool SourceFile::hasSyntaxRoot() const {
   return SyntaxInfo->SyntaxRoot.hasValue();
 }

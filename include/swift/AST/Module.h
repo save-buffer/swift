@@ -28,6 +28,7 @@
 #include "swift/Basic/OptionSet.h"
 #include "swift/Basic/STLExtras.h"
 #include "swift/Basic/SourceLoc.h"
+#include "swift/Syntax/SyntaxNodes.h"
 #include "llvm/ADT/ArrayRef.h"
 #include "llvm/ADT/DenseSet.h"
 #include "llvm/ADT/STLExtras.h"
@@ -1327,6 +1328,13 @@ private:
   Optional<std::vector<Token>> AllCorrectedTokens;
 
   std::unique_ptr<SourceFileSyntaxInfo> SyntaxInfo;
+};
+
+struct SourceFile::SourceFileSyntaxInfo {
+  const bool Enable;
+  /// The root of the syntax tree representing the source file.
+  Optional<syntax::SourceFileSyntax> SyntaxRoot;
+  SourceFileSyntaxInfo(bool Enable): Enable(Enable) {}
 };
 
 class SourceFile::LookupCache {
